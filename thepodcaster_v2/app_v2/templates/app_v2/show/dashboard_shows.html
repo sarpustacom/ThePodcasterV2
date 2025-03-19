@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<h1>Shows</h1>
+<p>Here are the shows you have created.</p>
+
+<a href="/dashboard/shows/create/" class="btn btn-success icon-link">
+    <i class="bi bi-plus-square-fill"></i>
+    Create New Show
+</a>
+
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  {% for show in shows %}
+  <div class="card" style="width: 18rem;">
+      <img src="{{show.cover.url}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{show.title}}</h5>
+        <p class="card-text">{{show.description}}</p>
+        <a href="/dashboard/shows/{{show.id}}/rss" class="btn btn-primary">Show RSS</a>
+        <a href="/dashboard/shows/{{show.id}}/edit" class="btn btn-primary">Edit</a>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+<!ELEMENT rss (channel)>
+<!ATTLIST rss version NMTOKEN #REQUIRED>
+<!ELEMENT channel (#PCDATA|title|author|email|owner|category|image|keywords|copyright|description|language|explicit|pubDate|link|item)*>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT author (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+<!ELEMENT owner (name,email)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT category EMPTY>
+<!ATTLIST category text CDATA #REQUIRED>
+<!ELEMENT image (url?,title?,link?)>
+<!ATTLIST image href CDATA #IMPLIED>
+<!ELEMENT url (#PCDATA)>
+<!ELEMENT link (#PCDATA)>
+<!ELEMENT keywords (#PCDATA)>
+<!ELEMENT copyright (#PCDATA)>
+<!ELEMENT description (#PCDATA)>
+<!ELEMENT language (#PCDATA)>
+<!ELEMENT explicit (#PCDATA)>
+<!ELEMENT pubDate (#PCDATA)>
+<!ELEMENT item (author+,title,pubDate,enclosure,duration,guid,explicit,description)>
+<!ELEMENT enclosure EMPTY>
+<!ATTLIST enclosure url CDATA #REQUIRED>
+<!ATTLIST enclosure type CDATA #REQUIRED>
+<!ATTLIST enclosure length CDATA #REQUIRED>
+<!ELEMENT duration (#PCDATA)>
+<!ELEMENT guid (#PCDATA)>
+<!ATTLIST guid isPermaLink NMTOKEN #REQUIRED>

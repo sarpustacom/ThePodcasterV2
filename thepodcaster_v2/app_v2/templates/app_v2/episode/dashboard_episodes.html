@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<h1>This is episodes page.</h1>
+<p>If you see that page, this app works properly.</p>
+
+
+<a href="/dashboard/episodes/create/" class="btn btn-success icon-link">
+    <i class="bi bi-plus-square-fill"></i>
+    Create New Episode
+</a>
+
+
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for episode in episodes %}
+    <div class="card" style="width: 18rem;">
+        <img src="{{episode.show.cover.url}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{episode.title}}</h5>
+          <p class="card-text">{{episode.description}}</p>
+          <a href="/dashboard/episodes/{{episode.id}}/edit" class="btn btn-primary">Edit</a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

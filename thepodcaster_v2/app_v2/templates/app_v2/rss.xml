@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss 
+    xmlns:googleplay="http://www.google.com/schemas/play-podcasts/1.0"
+    xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+    xmlns:atom="http://www.w3.org/2005/Atom"
+    xmlns:rawvoice="http://www.rawvoice.com/rawvoiceRssModule/"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
+
+    <channel>
+        <title>{{ show.title }}</title>
+        <googleplay:author>{{ show.user.first_name }} {{ show.user.last_name }}</googleplay:author>
+        <itunes:owner>
+            <itunes:name>{{ show.user.first_name }} {{ show.user.last_name }}</itunes:name>
+            <itunes:email>{{ show.user.email }}</itunes:email>
+        </itunes:owner>
+        <itunes:category text="{{ show.category |default:'Uncategorized' }}" />
+        
+        <image>
+            <url>{{ request.scheme }}://{{ request.get_host }}{{ show.cover.url }}</url>
+            <title>{{ show.title }}</title>
+            <link>{{ request.scheme }}://{{ request.get_host }}/shows/rss/{{ show.id }}</link>
+        </image>
+       
+        <itunes:keywords>{{ show.keywords }}</itunes:keywords>
+        <copyright>{{ show.copyright }}</copyright>
+        <description>{{ show.description }}</description>
+        <googleplay:image href="{{ request.scheme }}://{{ request.get_host }}{{ show.cover.url }}" />
+        <language>{{ show.language }}</language>
+        
+        <itunes:explicit>{% if show.explicit %}yes{% else %}no{% endif %}</itunes:explicit>
+        <pubDate>{{ show.format_pubdate }}</pubDate>
+        <link>{{ request.scheme }}://{{ request.get_host }}/shows/rss/{{ show.id }}</link>
+        <itunes:image href="{{ request.scheme }}://{{ request.get_host }}{{ show.cover.url }}" /> 
+        
+        {% for episode in episodes %} 
+        <item>
+            <author>{{ episode.show.user.first_name }} {{ episode.show.user.last_name }}</author>
+            <itunes:author>{{ episode.show.user.first_name }} {{ episode.show.user.last_name }}</itunes:author>
+            <title>{{ episode.title }}</title>
+            <pubDate>{{ episode.format_pubdate }}</pubDate>
+            <enclosure url="{{ request.scheme }}://{{ request.get_host }}{{ episode.audio.url }}" 
+                type="{{ episode.media_mime_type }}" 
+                length="{{ episode.audio.size |default:0 }}" />
+            <itunes:duration>{{ episode.duration }}</itunes:duration>
+            <guid isPermaLink="false">{{ episode.guid }}</guid>
+            <itunes:explicit>{% if episode.explicit %}yes{% else %}no{% endif %}</itunes:explicit>
+            <description>{{ episode.description }}</description>
+        </item> 
+        {% endfor %} 
+    </channel>
+</rss>
