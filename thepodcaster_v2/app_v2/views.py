@@ -39,7 +39,6 @@ def episodes(request):
     episodes = Episode.objects.filter(show__author=request.user)
     return render(request, 'app_v2/episode/dashboard_episodes.html', {"episodes": episodes})
     
-
 @login_required(login_url='/login/')
 def add_show(request):
     if request.method == 'POST' and request.FILES:
@@ -68,7 +67,6 @@ def add_episode(request):
     else:
         form = EpisodeForm()
         return render(request, 'app_v2/episode/episode_editor.html', {'form': form})
-
 
 @login_required(login_url='/login/')
 def edit_show(request, pk):
@@ -111,7 +109,6 @@ def dashboard_rss(request, pk):
     rss_content = render_to_string('app_v2/rss.xml', {'show': show, 'episodes': episodes,"request":request})
     return HttpResponse(rss_content, content_type='application/rss+xml')
     
-
 def show_rss(request, pk):
     show = Show.objects.get(pk=pk)
     episodes = Episode.objects.filter(show=show)

@@ -1,0 +1,32 @@
+{% load static %}
+<header class="p-3 mb-3 text-bg-dark">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+        <img src="{% static 'img/icon2.png' %}" alt="" width="30" height="30">
+      </a>
+
+      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <li><a href="/dashboard/" class="nav-link px-2 text-white">Overview</a></li>
+        <li><a href="/dashboard/shows/" class="nav-link px-2 text-white">My Shows</a></li>
+        <li><a href="/dashboard/episodes/" class="nav-link px-2 text-white">Episodes</a></li>
+        <li><a href="/dashboard/account/" class="nav-link px-2 text-white">Account</a></li>
+      </ul>
+
+      
+
+      <div class="text-end">
+        <img src="{% static 'img/user.png' %}" alt="mdo" width="32" height="32" class="rounded-circle" style="margin-right: 5px;">
+        <span class="text-white" style="margin-right: 20px;">@{{ request.user.username }}</span>
+        
+        <button type="button" class="btn btn-outline-light me-2" onclick="gologout()" >Sign Out</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  function gologout() {
+    window.location.href = "{% url 'logout' %}";
+  }
+</script>

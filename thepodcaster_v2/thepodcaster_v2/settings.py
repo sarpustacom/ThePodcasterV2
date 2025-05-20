@@ -136,5 +136,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
-LOGIN_URL = ""
-LOGIN_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = "dashboard"  # Replace with your actual home view name
+LOGOUT_REDIRECT_URL = "login"
+LOGIN_URL = "/login/"
